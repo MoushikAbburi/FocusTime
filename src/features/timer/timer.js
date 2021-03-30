@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Text, StyleSheet, View, Vibration, Platform } from 'react-native';
-import { CountDown } from '../../components/CountDown';
-import { RoundedButton } from '../../components/RoundedButton';
-import { ProgressBar } from 'react-native-paper';
-import { Timing } from './Timing';
-import { useKeepAwake } from 'expo-keep-awake';
+import React, { useState } from "react";
+import { Text, StyleSheet, View, Vibration, Platform } from "react-native";
+import { CountDown } from "../../components/CountDown";
+import { RoundedButton } from "../../components/RoundedButton";
+import { ProgressBar } from "react-native-paper";
+import { Timing } from "./Timing";
+import { useKeepAwake } from "expo-keep-awake";
 
 export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
   useKeepAwake();
@@ -17,7 +17,7 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
   };
 
   const vibrate = () => {
-    if (Platform.OS === 'ios') {
+    if (Platform.OS === "ios") {
       const interval = setInterval(() => Vibration.vibrate(), 1000);
       setTimeout(() => clearInterval(interval), 10000);
     } else {
@@ -77,12 +77,8 @@ export const Timer = ({ focusSubject, onTimerEnd, clearSubject }) => {
           />
         )}
       </View>
-      <View>
-        <RoundedButton
-          title="-"
-          size={50}
-          onPress={()=>clearSubject()}
-        />
+      <View style={styles.clearSubject}>
+        <RoundedButton title="-" size={50} onPress={() => clearSubject()} />
       </View>
     </View>
   );
@@ -93,28 +89,32 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    color: '#fff',
-    textAlign: 'center',
+    color: "#fff",
+    textAlign: "center",
   },
   task: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold',
+    color: "#fff",
+    textAlign: "center",
+    fontWeight: "bold",
   },
   countdown: {
     flex: 0.4,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonWrap: {
     flex: 0.3,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingTop: 20,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   bar: {
     height: 10,
-    backgroundColor: '#ff0000',
+    backgroundColor: "#ff0000",
+  },
+  clearSubject: {
+    paddingBottom: 25,
+    paddingLeft: 25,
   },
 });
